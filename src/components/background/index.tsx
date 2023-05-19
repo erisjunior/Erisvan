@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 
-export function Background() {
+export function Background({ stars }: { stars: number }) {
   const [{ width, height }, setWindowSize] = useState({
     width: 0,
     height: 0,
@@ -22,7 +22,7 @@ export function Background() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const starsPositions = Array.from({ length: 100 }, () => ({
+  const starsPositions = Array.from({ length: stars }, () => ({
     x: Math.random() * width,
     y: Math.random() * height,
   }));
