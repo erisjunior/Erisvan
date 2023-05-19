@@ -10,10 +10,16 @@ export function Background() {
   });
 
   useEffect(() => {
-    setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
+    const handleResize = () =>
+      setWindowSize({
+        width: window.innerWidth - 10,
+        height: window.innerHeight - 10,
+      });
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const starsPositions = Array.from({ length: 100 }, () => ({
